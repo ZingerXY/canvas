@@ -1,5 +1,6 @@
 var canvas;
 var ctx;
+var arc = [];
 
 var maxcolor = 225; // яркость кружков
 
@@ -14,10 +15,14 @@ var maxd = 200;
 var mind = 1;
 
 var arrtest = [];
+var speedtest = true;
+var average = 0;
 
 var colorarr = [];
 for(var n = 0; n < 901; n++)
 	colorarr.push(col(n));
+
+var point = {x: 10, y: 10, r: 2, vx: 3, vy: 3}
 
 function colors(r,g,b){
 	var d=200,e=50;
@@ -59,13 +64,43 @@ function drowCircle(x,y,r,c) {
     ctx.arc(x,y,r,0,Math.PI*2,true); // Outer circle
     ctx.fill();
 }
-// Действия при движении мыши
-function cursor(e) {
-	coordx = e.clientX;
-	coordy = e.clientY;
-	if(e.which) // когда зажата ЛКМ
-		c = colorGen();
+// События мыши и прикосновений
+var mouseX, mouseY, mousePVec, isMouseDown, selectedBody, mouseJoint;
+var canvasPosition = {x: 0, y: 0};
+
+function handleMouseDown(e) {
+	isMouseDown = true;
+	handleMouseMove(e);
+	document.addEventListener("mousemove", handleMouseMove, true);
+	document.addEventListener("touchmove", handleMouseMove, true);
 }
+
+function handleMouseUp() {
+	document.removeEventListener("mousemove", handleMouseMove, true);
+	document.removeEventListener("touchmove", handleMouseMove, true);
+	isMouseDown = false;
+	coordx = undefined;
+	coordx = undefined;
+}
+// Действия мыши
+function handleMouseMove(e) {
+	var clientX, clientY;
+	if(e.clientX) {
+		clientX = e.clientX;
+		clientY = e.clientY;
+	}
+	else if(e.changedTouches && e.changedTouches.length > 0) {
+		var touch = e.changedTouches[e.changedTouches.length - 1];
+		clientX = touch.clientX;
+		clientY = touch.clientY;
+	}
+	else {
+		return;
+	}
+	point.x = clientX;
+	point.y = clientY;
+	e.preventDefault();
+};
 // КЛАМП!! КЛАМП!!
 function clamp(p, min, max) {
 	return p >= max ? max : p < min ? min : p;
@@ -75,53 +110,77 @@ function clampM(p, min, max) {
 	return p >= max ? min : p < min ? max : p;
 }
 
-function MathCircle(x,y) {
-	var d = Math.sqrt(Math.pow(coordx-x, 2) + Math.pow(coordy-y,2));
-	var dc = Math.sqrt(Math.pow(x, 2) + Math.pow(y,2));
-	var r = 3;
+function MathCircle(e, i, arr) {
+	d = Math.sqrt(Math.pow(point.x-e.x, 2) + Math.pow(point.y-e.y,2));
+	var r = e.r;
 	if(d < maxd)
 		r =  Math.abs(maxr + (minr - maxr)*(d - mind)/(maxd - mind));
-	var clr = Math.abs(900 + (1 - 900)*(dc - mind)/(maxdс - mind));
-	c = colorarr[Math.round(clr)];
-	/*var clr = Math.abs(4095 + (1 - 4095)*(d - mind)/(maxdс - mind));
-	c = "#"+Math.round(clr).toString(16);*/
-	//console.log(clr);
-	r = clamp(r, minr, maxr);
-	ctx.shadowColor = c;
+	ctx.shadowColor = e.c;
 	ctx.shadowBlur = r;
-	drowCircle(x,y,r,c);
+	drowCircle(e.x,e.y,r,e.c);
+}
+
+function MathColors(x,y) {
+	maxdс = canvas.width;
+	var dc = Math.sqrt(Math.pow(x, 2) + Math.pow(y,2));
+	var clr = Math.abs(900 + (1 - 900)*(dc - mind)/(maxdс - mind));
+	var c = colorarr[Math.round(clr)];
+	/*var clr = Math.abs(4095 + (1 - 4095)*(d - mind)/(maxdс - mind));
+	var c = "#"+Math.round(clr).toString(16);*/
+	return colorarr[Math.round(clr)];
+}
+
+function createCircle() {
+	arc = [];
+	for(var y = 15; y < canvas.height; y += 40)
+		for(var x = 15; x < canvas.width; x += 40)
+			arc.push({x: x, y: y, c: MathColors(x,y), r: 3});
+	for(var y = 35; y < canvas.height; y += 40)
+		for(var x = 35; x < canvas.width; x += 40)
+			arc.push({x: x, y: y, c: MathColors(x,y), r: 3});
 }
 
 // Перерисовка положения кружочков
 function nextRound() {
-	var time = performance.now();
+	var time = 0;
+	if (speedtest)
+		time = performance.now();
 	ctx.clearRect(0,0,window.innerWidth,window.innerHeight);
 	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight;
-	maxdс = canvas.width;
+	canvas.height = window.innerHeight;	
 	/*c = "#fff";
 	ctx.shadowColor = "#f00";
-	ctx.shadowBlur = 5;*/	
-	for(var y = 15; y < canvas.height; y += 40)
-		for(var x = 15; x < canvas.width; x += 40)
-			MathCircle(x,y);
-	for(var y = 35; y < canvas.height; y += 40)
-		for(var x = 35; x < canvas.width; x += 40)
-			MathCircle(x,y);
-	time = performance.now() - time;
-	arrtest.push(time);
+	ctx.shadowBlur = 5;*/
+	point.x += point.vx;
+	point.y += point.vy;
+	// Отталкивание от стен
+	if(point.x - point.r < 0 || point.x + point.r > canvas.width)
+		point.vx = -point.vx;
+	if(point.y - point.r < 0 || point.y + point.r > canvas.height)
+		point.vy = -point.vy;
+	//drowCircle(point.x,point.y,point.r,"#fff");
+	arc.forEach(MathCircle);
+	if (speedtest) {
+		arrtest.push(performance.now() - time);
+		var fsiz = 18;
+		ctx.font = fsiz+"px Consolas, Lucida Console, monospace";
+		ctx.fillStyle = "#fff";
+		ctx.shadowColor = "#fff";
+		ctx.shadowBlur = 5;
+		ctx.fillText("speed: "+Math.round(average*100)/100, 5, fsiz);
+	}
 }
 
 function showTest() {	
 	var sum = 0;
 	for(var i = 0; i < arrtest.length; i++)
 		sum += arrtest[i];
-	var average = sum/arrtest.length;
+	average = sum/arrtest.length;
 	console.log(average);
 }
 
 function main() //главная функция
-{
+{	
 	zInd = 0;
 	canvas = document.createElement('canvas');
 	canvas.style.position = "fixed";
@@ -131,13 +190,18 @@ function main() //главная функция
 	canvas.style.cursor = "none";
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;	
+	createCircle();
 	document.body.insertBefore(canvas, document.body.firstChild);
-	canvas.onmousemove = cursor;
+	canvas.addEventListener("mousedown", handleMouseDown, true);
+	canvas.addEventListener("touchstart", handleMouseDown, true);
+	canvas.addEventListener("mouseup", handleMouseUp, true);
+	canvas.addEventListener("touchend", handleMouseUp, true);
 	//canvas.click(drowfigure);
 	ctx = canvas.getContext('2d');
 	// Отрисовка изображения каждые 15 мс
-	setInterval(nextRound, 15);
-	//setInterval(showTest, 2500);
+	setInterval(nextRound, 25);
+	if(speedtest)
+		setInterval(showTest, 1000);
 	//drowfigure();
 }
 
