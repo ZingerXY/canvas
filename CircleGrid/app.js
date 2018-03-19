@@ -15,14 +15,15 @@ var maxd = 200;
 var mind = 1;
 
 var arrtest = [];
-var speedtest = true;
+var speedtest = false;
 var average = 0;
 
 var colorarr = [];
 for(var n = 0; n < 901; n++)
 	colorarr.push(col(n));
 
-var point = {x: 10, y: 10, r: 2, vx: 3, vy: 3}
+//var point = {x: 10, y: 10, r: 2, vx: 3, vy: 3}
+var point = {x: 10, y: 10, r: 2, vx: 10, vy: 0}
 
 function colors(r,g,b){
 	var d=200,e=50;
@@ -111,7 +112,8 @@ function clampM(p, min, max) {
 }
 
 function MathCircle(e, i, arr) {
-	d = Math.sqrt(Math.pow(point.x-e.x, 2) + Math.pow(point.y-e.y,2));
+	//d = Math.sqrt(Math.pow(point.x-e.x, 2) + Math.pow(point.y-e.y,2)); // точка
+	d = Math.sqrt(Math.pow(point.x-e.x, 2)); // волна
 	var r = e.r;
 	if(d < maxd)
 		r =  Math.abs(maxr + (minr - maxr)*(d - mind)/(maxd - mind));
@@ -120,9 +122,10 @@ function MathCircle(e, i, arr) {
 	drowCircle(e.x,e.y,r,e.c);
 }
 
-function MathColors(x,y) {
-	maxdс = canvas.width;
-	var dc = Math.sqrt(Math.pow(x, 2) + Math.pow(y,2));
+function MathColors(x,y,maxdc) {
+	
+	var dc = Math.sqrt(Math.pow(x, 2) + Math.pow(y,2));  // градиент с угла в угол	
+	//var dc = Math.sqrt(Math.pow(x, 2)); // градиент с лева на право
 	var clr = Math.abs(900 + (1 - 900)*(dc - mind)/(maxdс - mind));
 	var c = colorarr[Math.round(clr)];
 	/*var clr = Math.abs(4095 + (1 - 4095)*(d - mind)/(maxdс - mind));
@@ -132,6 +135,8 @@ function MathColors(x,y) {
 
 function createCircle() {
 	arc = [];
+	maxdс = Math.sqrt(Math.pow(canvas.width, 2) + Math.pow(canvas.height,2));
+	//maxdс = canvas.width;
 	for(var y = 15; y < canvas.height; y += 40)
 		for(var x = 15; x < canvas.width; x += 40)
 			arc.push({x: x, y: y, c: MathColors(x,y), r: 3});
