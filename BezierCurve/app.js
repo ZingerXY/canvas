@@ -78,7 +78,7 @@ function nextRound() {
 	//curves.forEach(function(item, i, arr) {		
 		var color = "#fff";
 		var rad = 5;
-		var step = Rand(1, 5);
+		var step = Randf(2, 4);
 		
 		ctx.strokeStyle = color;
 		ctx.lineWidth = 3;
