@@ -1,4 +1,4 @@
-//function Matrix(){var t=29,n=35,e=[],o=[],i=[],r=!1,d=!0,l=!0,a=0,h=0,f="0123456789ƎƏƐƑƒƓƔƕƖƗƘƙƚƛƜƝƞƟƠơƢƣƤƥƦƧƨƩƪƫƬƭƮƯưƱƲɐɑɒɓɔɕɖɗɘəɚɛɜɝɞɟɠɡɢɣɤɥɦɧɨɯɰɱɲɳɴɵɶʙʚʛʜʞαβγδεζηθικλμνξοπρςστυφχψωϧϨϩϪϫϬϭϮϯϰϱϲ",s=[50,200,50],u=[55,55,55],w=document.createElement("canvas");w.style.position="fixed",w.style.top="0px",w.style.left="0px",w.style.zIndex=h,w.width=window.innerWidth,w.height=window.innerHeight,document.body.insertBefore(w,document.body.firstChild);var c=w.getContext("2d");function g(t,n){return Math.floor(Math.random()*(n-t+1))+t}function y(t,n,e){return t>=e?e:t<n?n:t}function v(t,n){var e=g(t,n);return e<20?f[g(0,f.length-1)]:e>=20&&e<=30?f[g(0,f.length-1)]:e>30?" ":void 0}function x(){if(l){w.width=window.innerWidth,w.height=window.innerHeight,w.style.zIndex=h,c.clearRect(0,0,window.innerWidth,window.innerHeight),c.font="18px Consolas, Lucida Console, monospace";var a=Math.floor(window.innerWidth/c.measureText(f[0]).width);e=[];for(var x=[],C=0;C<a;C++)" "!=o[C]?e[C]=v(0,n):e[C]=v(t,100),o[C]=e[C],x[C]=0;i[0]=e;var m,p,k,b,H,I=Math.floor(window.innerHeight/18);for(C=I+12;0!=C;C--)i[C]=i[C-1]?i[C-1]:[];d&&(m=s[0],p=s[1],k=s[2],H=50,m==(b=200)?k==b?m--:p==H&&k>=H?k++:k==H&&p>H&&p--:p==b?m==b?p--:k==H&&m>=H?m++:m==H&&k>H&&k--:k==b&&(p==b?k--:m==H&&p>=H?p++:p==H&&m>H&&m--),s=[m,p,k]);for(C=I+12;0!=C;C--)for(var M in i[C]){var S;" "!=i[C][M]?(i[C][M]=f[g(0,f.length-1)],x[M]++):x[M]=0,S=r?"rgba("+y(s[0]-10*x[M],7,255)+", "+y(s[1]-10*x[M],7,255)+", "+y(s[2]-10*x[M],7,255)+", 1)":"rgba("+s[0]+", "+s[1]+", "+s[2]+", "+y(1-.05*x[M],0,1)+")",1==x[M]&&(S="rgba("+y(s[0]+u[0],0,255)+", "+y(s[1]+u[1],0,255)+", "+y(s[2]+u[2],0,255)+", 1)"),c.fillStyle=S,c.shadowColor=S,c.shadowBlur=5,C<=I&&c.fillText(i[C][M],M*c.measureText(f[0]).width,18*C)}}}document.onkeydown=function(t){console.log(t.keyCode),90===t.keyCode&&(r=!r),88===t.keyCode&&(h=h?0:9999,w.style.zIndex=h),67===t.keyCode&&(d=!d),86===t.keyCode&&(l=!l)},this.Stop=function(){clearInterval(a),a=0},this.Start=function(){a||(a=setInterval(x,100))},this.ColorH=function(t,n,e){if(!arguments.length)return s;s=[t,n,e]},this.ColorP=function(t){if(!arguments.length)return u[0];u=[t,t,t]},this.Start()}var matrix = new Matrix;
+//function Matrix(){var e=29,t=35,n=[],o=[],i=[],r=!1,h=!0,a=!0,l=0,d=0,c="0123456789ƎƏƐƑƒƓƔƕƖƗƘƙƚƛƜƝƞƟƠơƢƣƤƥƦƧƨƩƪƫƬƭƮƯưƱƲɐɑɒɓɔɕɖɗɘəɚɛɜɝɞɟɠɡɢɣɤɥɦɧɨɯɰɱɲɳɴɵɶʙʚʛʜʞαβγδεζηθικλμνξοπρςστυφχψωϧϨϩϪϫϬϭϮϯϰϱϲ",f=[50,200,50],s=[55,55,55],w="rgb(255,255,255)",u={x:0,y:0},x=document.createElement("canvas");x.style.position="fixed",x.style.top="0px",x.style.left="0px",x.style.zIndex=d,x.width=window.innerWidth,x.height=window.innerHeight,x.onmousemove=function(e){u.x=e.clientX,u.y=e.clientY},document.body.insertBefore(x,document.body.firstChild);var y=x.getContext("2d");function g(e,t){return Math.floor(Math.random()*(t-e+1))+e}function C(e,t,n){return e>=n?n:e<t?t:e}function v(e,t){var n=g(e,t);return n<20?c[g(0,c.length-1)]:n>=20&&n<=30?c[g(0,c.length-1)]:n>30?" ":void 0}function m(){if(a){x.width=window.innerWidth,x.height=window.innerHeight,x.style.zIndex=d,y.clearRect(0,0,window.innerWidth,window.innerHeight),y.font="18px Consolas, Lucida Console, monospace";var l=Math.floor(window.innerWidth/y.measureText(c[0]).width);n=[];for(var m=[],p=0;p<l;p++)" "!=o[p]?n[p]=v(0,t):n[p]=v(e,100),o[p]=n[p],m[p]=0;i[0]=n;var z,b,k,H,I,M=Math.floor(window.innerHeight/18);for(p=M+12;0!=p;p--)i[p]=i[p-1]?i[p-1]:[];h&&(z=f[0],b=f[1],k=f[2],I=50,z==(H=200)?k==H?z--:b==I&&k>=I?k++:k==I&&b>I&&b--:b==H?z==H?b--:k==I&&z>=I?z++:z==I&&k>I&&k--:k==H&&(b==H?k--:z==I&&b>=I?b++:b==I&&z>I&&z--),f=[z,b,k]);for(p=M+12;0!=p;p--)for(var S in i[p]){var T;" "!=i[p][S]?(i[p][S]=c[g(0,c.length-1)],m[S]++):m[S]=0,T=r?"rgba("+C(f[0]-10*m[S],7,255)+", "+C(f[1]-10*m[S],7,255)+", "+C(f[2]-10*m[S],7,255)+", 1)":"rgba("+f[0]+", "+f[1]+", "+f[2]+", "+C(1-.05*m[S],0,1)+")",1==m[S]&&(T="rgba("+C(f[0]+s[0],0,255)+", "+C(f[1]+s[1],0,255)+", "+C(f[2]+s[2],0,255)+", 1)"),y.fillStyle=T,y.shadowColor=T,y.shadowBlur=5,charh=18,charw=y.measureText(c[0]).width,charx=S*charw,chary=p*charh,u.x>charx&&u.x<charx+charw&&u.y<chary&&u.y>chary-charh&&(i[p][S]=c[g(0,c.length-1)]),p<=M&&y.fillText(i[p][S],charx,chary)}fsiz=18,y.font=fsiz+"px Consolas, Lucida Console, monospace",y.fillStyle=w,y.shadowColor=w,y.shadowBlur=5,y.fillText("x: "+u.x.toFixed(3),5,fsiz),y.fillText("y: "+u.y.toFixed(3),5,2*fsiz)}}document.onkeydown=function(e){console.log(e.keyCode),90===e.keyCode&&(r=!r),88===e.keyCode&&(d=d?0:9999,x.style.zIndex=d),67===e.keyCode&&(h=!h),86===e.keyCode&&(a=!a)},this.Stop=function(){clearInterval(l),l=0},this.Start=function(){l||(l=setInterval(m,100))},this.ColorH=function(e,t,n){if(!arguments.length)return f;f=[e,t,n]},this.ColorP=function(e){if(!arguments.length)return s[0];s=[e,e,e]},this.Start()}var matrix = new Matrix;
 function Matrix() {
 	var minn = 29, maxx = 35;
 	var a = [];
@@ -12,6 +12,8 @@ function Matrix() {
 	var arrChar = "0123456789ƎƏƐƑƒƓƔƕƖƗƘƙƚƛƜƝƞƟƠơƢƣƤƥƦƧƨƩƪƫƬƭƮƯưƱƲɐɑɒɓɔɕɖɗɘəɚɛɜɝɞɟɠɡɢɣɤɥɦɧɨɯɰɱɲɳɴɵɶʙʚʛʜʞαβγδεζηθικλμνξοπρςστυφχψωϧϨϩϪϫϬϭϮϯϰϱϲ"	
 	var h = [50,200,50];
 	var p = [55,55,55];
+	var col = "rgb(255,255,255)";
+	var cord = {x:0,y:0};
 	
 	var canvas = document.createElement('canvas');
 	canvas.style.position = "fixed";
@@ -20,6 +22,7 @@ function Matrix() {
 	canvas.style.zIndex = zInd;
 	canvas.width = window.innerWidth;
 	canvas.height = window.innerHeight;
+	canvas.onmousemove = cursor;
 	document.body.insertBefore(canvas, document.body.firstChild);
 	var ctx = canvas.getContext('2d');
 	document.onkeydown = function(e){ 
@@ -29,6 +32,12 @@ function Matrix() {
 		if(e.keyCode === 67) {cp = !cp;} // с вкл/выкл изменение цвета
 		if(e.keyCode === 86) {on = !on;} // v вкл/выкл анимацию
 	};
+	
+	// Действия при движении мыши
+	function cursor(e) {
+		cord.x = e.clientX;
+		cord.y = e.clientY;
+	}
 	
 	this.Stop = function() {
 		clearInterval(timer);
@@ -124,9 +133,27 @@ function Matrix() {
 				ctx.fillStyle = color;
 				ctx.shadowColor = color;
 				ctx.shadowBlur = 5;
+				charh = 18;
+				charw = ctx.measureText(arrChar[0]).width
+				charx = j*charw + i * Math.sin(j);
+				chary = i*charh;
+				//if(cord.x > charx && cord.x < (charx+charw) && cord.y < chary && cord.y > (chary-charh)) {
+				if(cord.x > (charx - charw) && cord.x < (charx+charw*2) && cord.y < (chary + charh) && cord.y > (chary-charh*2)) {
+					color = "rgba("+clamp(h[0]+p[0],0,255)+", "+clamp(h[1]+p[1],0,255)+", "+clamp(h[2]+p[2],0,255)+", 1)";
+					ctx.shadowColor = color;
+					ctx.fillStyle = color;
+					obj[i][j] = arrChar[Rand(0, arrChar.length-1)];
+				}
 				if(i <= start)
-					ctx.fillText(obj[i][j], j*ctx.measureText(arrChar[0]).width, 18*i);
+					ctx.fillText(obj[i][j], charx, chary);
 			}
+		/*fsiz = 18;
+		ctx.font = fsiz+"px Consolas, Lucida Console, monospace";
+		ctx.fillStyle = col;
+		ctx.shadowColor = col;
+		ctx.shadowBlur = 5;*/
+		//ctx.fillText("x: "+cord.x.toFixed(3), 5, fsiz);
+		//ctx.fillText("y: "+cord.y.toFixed(3), 5, fsiz*2);
 	}
 	this.Start();
 }
