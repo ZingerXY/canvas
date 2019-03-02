@@ -7,7 +7,7 @@
 * [SolarSystem](https://raspkit.ru/canvas/canvas/SolarSystem/index.htm) - модель солнечной системы
 * [HexPaint](https://raspkit.ru/canvas/canvas/HexPaint/index.htm) - простая гексагональная рисовалка
 * [FullRotation](https://raspkit.ru/canvas/canvas/FullRotation/index.htm) - рекурсивная генерация тел вращения
-* [CircleGrid](https://raspkit.ru/canvas/canvas/FullRotation/index.htm) - сетка из разноцветных кругов которые меняются от мышки
+* [CircleGrid](https://raspkit.ru/canvas/canvas/CircleGrid/index.htm) - сетка из разноцветных кругов которые меняются от мышки
 * [BezierCurve](https://raspkit.ru/canvas/canvas/BezierCurve/index.htm) - немного поигрался с кривыми Безье
 * [Matrix_oopt](https://raspkit.ru/canvas/canvas/Matrix_oopt/index.htm) - новый оптимизированный многофункциональный эффект матрицы
 
