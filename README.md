@@ -10,6 +10,9 @@
 * [CircleGrid](https://raspkit.ru/canvas/canvas/CircleGrid/index.htm) - сетка из разноцветных кругов которые меняются от мышки
 * [BezierCurve](https://raspkit.ru/canvas/canvas/BezierCurve/index.htm) - немного поигрался с кривыми Безье
 * [Matrix_oopt](https://raspkit.ru/canvas/canvas/Matrix_oopt/index.htm) - новый оптимизированный многофункциональный эффект матрицы
+* [LinePoints](https://raspkit.ru/canvas/canvas/LinePoints/index.htm) - точки связаные кривыми Безье
+* [DynamicChart](https://raspkit.ru/canvas/canvas/DynamicChart/index.htm) - динамическая отрисовка графика функции
+* [MyCanvasSnake](https://raspkit.ru/canvas/canvas/MyCanvasSnake/index.htm) - бешеная полуавтоматическая бессмертная змейка на канвасе
 
 ## Рабочие примеры:
 https://raspkit.ru/canvas/
